@@ -1,18 +1,26 @@
 <?php
 
 require_once "src/Database/DBConnection.php";
+require_once "src/Manager/Contact_Manager.php";
 
 $db = new DBConnection();
-
-//Test connexion (le supprimer après)
-var_dump($db->getPDO());
+$manager = new ContactManager();
 
 while (true) {
     $line = readline("Enter your command: ");
 
     //LIST
     if ($line === "list") {
-        echo "Affichage de la liste des contacts\n";
+
+        $contacts = $manager->findAll();
+
+        foreach ($contacts as $contact) {
+            echo $contact['id'] . " - " .
+                 $contact['name'] . " - " .
+                 $contact['email'] . " - " .
+                 $contact['phone_number'] . "\n";
+        }
+
         continue;
     }
 
