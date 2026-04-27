@@ -1,9 +1,7 @@
 <?php
 
-require_once "src/Database/DBConnection.php";
 require_once "src/Manager/ContactManager.php";
 
-$db = new DBConnection();
 $manager = new ContactManager();
 
 //Boucle infinie CLI
