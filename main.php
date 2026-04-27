@@ -1,24 +1,23 @@
 <?php
 
 require_once "src/Database/DBConnection.php";
-require_once "src/Manager/Contact_Manager.php";
+require_once "src/Manager/ContactManager.php";
 
 $db = new DBConnection();
 $manager = new ContactManager();
 
+//Boucle infinie CLI
 while (true) {
     $line = readline("Enter your command: ");
 
-    //LIST
+    //LIST contacts
     if ($line === "list") {
 
         $contacts = $manager->findAll();
 
+       //Affichage via __toString()
         foreach ($contacts as $contact) {
-            echo $contact['id'] . " - " .
-                 $contact['name'] . " - " .
-                 $contact['email'] . " - " .
-                 $contact['phone_number'] . "\n";
+            echo $contact . "\n";
         }
 
         continue;
