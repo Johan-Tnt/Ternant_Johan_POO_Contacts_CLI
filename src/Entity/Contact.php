@@ -1,8 +1,9 @@
 <?php
 
+//class Contact correspond directement à une ligne de la table SQL contact
 class Contact
 {
-    //Attributs correspondant à la table SQL
+    //Attributs correspondant aux colonnes de la table SQL contact
     private ?int $id = null;
     private ?string $name = null;
     private ?string $email = null;
@@ -53,7 +54,8 @@ class Contact
         $this->phoneNumber = $phoneNumber;
     }
 
-    //Affichage propre, permet d'afficher directement l'objet avec echo
+    //Convertit l'objet en chaîne de caractères pour affichage CLI (avec echo)
+    //utilise la méthode magique __toString()
     public function __toString(): string
     {
         return $this->id . " - " . $this->name . " - " . $this->email . " - " . $this->phoneNumber;

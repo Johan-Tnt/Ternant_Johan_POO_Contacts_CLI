@@ -1,23 +1,18 @@
 <?php
 
-require_once "src/Manager/ContactManager.php";
+require_once "src/Command/Command.php";
 
-$manager = new ContactManager();
+//class Command qui contient toutes les commandes LIST, etc...
+$command = new Command();
 
 //Boucle infinie CLI
 while (true) {
-    $line = readline("Enter your command: ");
+    $line = readline("Enter your command (list, quit): ");
 
     //LIST contacts
     if ($line === "list") {
-
-        $contacts = $manager->findAll();
-
-       //Affichage via __toString()
-        foreach ($contacts as $contact) {
-            echo $contact . "\n";
-        }
-
+    //Lecture de commande pour LIST
+        $command->list();
         continue;
     }
 
@@ -28,5 +23,5 @@ while (true) {
     }
 
     //DEFAULT
-    echo "Commande inconnue\n";
+    echo "Unknown command\n";
 }

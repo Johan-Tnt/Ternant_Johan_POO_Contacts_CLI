@@ -3,6 +3,8 @@
 require_once "src/Database/DBConnection.php";
 require_once "src/Entity/Contact.php"; 
 
+//class ContactManager gère l'accès aux données de la table Contact
+//Centralise les requêtes SQL liées aux contacts et retourne des objets Contact
 class ContactManager
 {
     private PDO $pdo;

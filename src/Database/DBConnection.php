@@ -1,7 +1,9 @@
 <?php
 
+//class DBConnection gère la connexion à la base de données via PDO
 class DBConnection
 {
+    //Instance PDO stockée en mémoire pour éviter plusieurs connexions inutiles
     private ?PDO $pdo = null;
 
     public function getPDO(): PDO
