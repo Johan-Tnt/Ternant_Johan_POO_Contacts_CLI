@@ -70,4 +70,21 @@ class ContactManager
 
         return $contact; 
     }
+
+    //Insère un nouveau contact dans la base de données
+    public function create(Contact $contact) : void
+    {
+    //Requête SQL paramétrée pour éviter les injections SQL
+    $sql = "INSERT INTO contacts (name, email, phone_number)
+            VALUES (:name, :email, :phone_number)";
+
+    $stmt = $this->pdo->prepare($sql);
+
+    //On utilise les getters pour respecter l'encapsulation de la classe Contact
+    $stmt->execute([
+        "name" => $contact->getName(),
+        "email" => $contact->getEmail(),
+        "phone_number" => $contact->getPhoneNumber(),
+        ]);
+    }
 }

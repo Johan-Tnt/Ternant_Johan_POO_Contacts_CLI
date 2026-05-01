@@ -14,7 +14,7 @@ class Command
         $this->contactManager = new ContactManager();
     }
 
-        //LIST contacts
+    //LIST contacts
     public function list(): void
     {
         //Récupère tous les contacts depuis la base
@@ -33,7 +33,8 @@ class Command
             echo $contact . "\n";
         }
     }
-        //DETAIL contacts
+
+    //DETAIL contacts
     public function detail(int $id): void
     {
         //Récupère le contact via son id
@@ -47,5 +48,21 @@ class Command
 
         //Affiche le contact (grâce à __toString() )
         echo $contact . "\n";
+    }
+
+    //CREATE contact
+    public function create(string $name, string $email, string $phoneNumber) : void 
+    {
+        //Création d’un objet Contact 
+        $contact = new Contact();
+
+        $contact->setName($name);
+        $contact->setEmail($email);
+        $contact->setPhoneNumber($phoneNumber);
+
+        //Demande au ContactManager d’insérer en base
+        $this->contactManager->create($contact);
+
+        echo "Contact created successfully.\n";
     }
 }

@@ -11,7 +11,7 @@ while (true) {
 
     //LIST contacts
     if ($line === "list") {
-    //Lecture de commande pour LIST
+        
         $command->list();
         continue;
     }
@@ -19,8 +19,21 @@ while (true) {
     //DETAIL contacts (ex detail 2)
     if (preg_match('/^detail\s+(\d+)$/', $line, $matches)) {
         $id = (int)$matches [1];
+
         $command->detail($id) ;
         continue;   
+    }
+
+    //CREATE contact
+    if (preg_match('/^create\s+(.+),\s*(.+),\s*(.+)$/', $line, $matches)) {
+
+        $name = $matches[1];
+        $email = $matches[2];
+        $phone = $matches[3];
+
+        $command->create($name, $email, $phone);
+        continue;
+
     }
 
     //QUIT
