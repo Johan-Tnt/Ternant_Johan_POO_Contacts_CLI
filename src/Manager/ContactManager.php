@@ -18,7 +18,7 @@ class ContactManager
 
     //Récupère tous les contacts de la bdd et les transforme en objets Contact
     public function findAll(): array
-     {
+    {
         $sql = "SELECT * FROM contacts";
         $stmt = $this->pdo->query($sql);
         //Résultat brut SQL
@@ -39,5 +39,35 @@ class ContactManager
         }
 
         return $contacts;
-     }
+    }
+
+    //Récupère un contact unique depuis la base de données à partir de son id
+    public function findById(int $id): ?Contact
+    {
+        //Requête SQL avec paramètre nommé pour éviter les injections SQL
+        $sql = "SELECT * FROM contacts WHERE id= :id";
+        //Prépare la requête (sécurisé + optimisé pour les requêtes avec paramètres)
+        $stmt = $this->pdo->prepare($sql);
+        //Exécute la requête en injectant la valeur de l'id dans le paramètre :id
+        $stmt->execute([
+            "id" => $id
+        ]);
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //Si aucun résultat n'est trouvé
+        if ($row === false) {
+            return null;
+        }
+
+        //Transformation en objets Contact
+        $contact = new Contact();
+
+        $contact->setId($row["id"]);
+        $contact->setName($row["name"]);
+        $contact->setEmail($row["email"]);
+        $contact->setPhoneNumber($row["phone_number"]);
+
+        return $contact; 
+    }
 }

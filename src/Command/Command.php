@@ -33,4 +33,19 @@ class Command
             echo $contact . "\n";
         }
     }
+        //DETAIL contacts
+    public function detail(int $id): void
+    {
+        //Récupère le contact via son id
+        $contact = $this->contactManager->findById($id);
+
+        //Si aucun contact n'est trouvé 
+        if ($contact === null) {
+            echo "Contact not found.\n";
+            return;
+        }
+
+        //Affiche le contact (grâce à __toString() )
+        echo $contact . "\n";
+    }
 }

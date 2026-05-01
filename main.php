@@ -16,6 +16,13 @@ while (true) {
         continue;
     }
 
+    //DETAIL contacts (ex detail 2)
+    if (preg_match('/^detail\s+(\d+)$/', $line, $matches)) {
+        $id = (int)$matches [1];
+        $command->detail($id) ;
+        continue;   
+    }
+
     //QUIT
     if ($line === "quit") {
         echo "Bye!\n";
