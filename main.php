@@ -7,7 +7,7 @@ $command = new Command();
 
 //Boucle infinie CLI
 while (true) {
-    $line = readline("Enter your command (list, quit): ");
+    $line = readline("Enter your command (list, detail, create, delete, quit): ");
 
     //LIST contacts
     if ($line === "list") {
@@ -33,7 +33,14 @@ while (true) {
 
         $command->create($name, $email, $phone);
         continue;
+    }
 
+    //DELETE contact
+    if(preg_match('/^delete\s+(\d+)$/', $line, $matches)) {
+
+        $id = (int)$matches[1];
+        $command->delete($id);
+        continue;
     }
 
     //QUIT

@@ -65,4 +65,17 @@ class Command
 
         echo "Contact created successfully.\n";
     }
+
+    //DELETE contact
+    public function delete(int $id): void
+    { 
+    //Demande à ContactManager de supprimer le contact en base
+        $deleted = $this->contactManager->delete($id);
+        
+        if ($deleted) {
+            echo"Contact deleted successfully.\n";
+        } else {
+            echo "Contact not found.\n";
+        }
+    }
 }

@@ -71,20 +71,34 @@ class ContactManager
         return $contact; 
     }
 
-    //Insère un nouveau contact dans la base de données
-    public function create(Contact $contact) : void
-    {
-    //Requête SQL paramétrée pour éviter les injections SQL
-    $sql = "INSERT INTO contacts (name, email, phone_number)
+        //Insère un nouveau contact dans la base de données
+        public function create(Contact $contact) : void
+        {
+        //Requête SQL paramétrée pour éviter les injections SQL
+        $sql = "INSERT INTO contacts (name, email, phone_number)
             VALUES (:name, :email, :phone_number)";
 
-    $stmt = $this->pdo->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
 
-    //On utilise les getters pour respecter l'encapsulation de la classe Contact
-    $stmt->execute([
-        "name" => $contact->getName(),
-        "email" => $contact->getEmail(),
-        "phone_number" => $contact->getPhoneNumber(),
+        //On utilise les getters pour respecter l'encapsulation de la classe Contact
+        $stmt->execute([
+            "name" => $contact->getName(),
+            "email" => $contact->getEmail(),
+            "phone_number" => $contact->getPhoneNumber(),
         ]);
+    }
+
+        //Supprime un contact de la base de données à partir de son id
+        public function delete(int $id): bool
+        {
+        $sql = "DELETE FROM contacts WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            "id" => $id
+        ]);
+
+        //Si aucune ligne n'a été supprimée alors l'id n'existe pas
+        return $stmt->rowCount() >  0;
     }
 }
