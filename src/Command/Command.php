@@ -71,7 +71,7 @@ class Command
     { 
     //Demande à ContactManager de supprimer le contact en base
         $deleted = $this->contactManager->delete($id);
-        
+
         if ($deleted) {
             echo"Contact deleted successfully.\n";
         } else {

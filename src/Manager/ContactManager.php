@@ -71,9 +71,9 @@ class ContactManager
         return $contact; 
     }
 
-        //Insère un nouveau contact dans la base de données
-        public function create(Contact $contact) : void
-        {
+    //Insère un nouveau contact dans la base de données
+    public function create(Contact $contact) : void
+    {
         //Requête SQL paramétrée pour éviter les injections SQL
         $sql = "INSERT INTO contacts (name, email, phone_number)
             VALUES (:name, :email, :phone_number)";
@@ -88,9 +88,9 @@ class ContactManager
         ]);
     }
 
-        //Supprime un contact de la base de données à partir de son id
-        public function delete(int $id): bool
-        {
+    //Supprime un contact de la base de données à partir de son id
+    public function delete(int $id): bool
+    {
         $sql = "DELETE FROM contacts WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
 
