@@ -72,7 +72,7 @@ class ContactManager
     }
 
     //Insère un nouveau contact dans la base de données
-    public function create(Contact $contact) : void
+    public function create(Contact $contact): void
     {
         //Requête SQL paramétrée pour éviter les injections SQL
         $sql = "INSERT INTO contacts (name, email, phone_number)

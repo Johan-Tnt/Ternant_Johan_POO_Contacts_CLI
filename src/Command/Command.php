@@ -78,4 +78,16 @@ class Command
             echo "Contact not found.\n";
         }
     }
+
+    //HELP command
+    public function help(): void
+    {
+        echo "Available commands:\n";
+        echo "help                               Display this help message\n";
+        echo "list                               List all contacts\n";
+        echo "detail [id]                        Show contact details\n";
+        echo "create [name], [email], [phone]    Create a new contact\n";
+        echo "delete [id]                        Delete a contact\n";
+        echo "quit                               Exit the program\n";
+    }
 }
