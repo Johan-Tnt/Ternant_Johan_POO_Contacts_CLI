@@ -104,11 +104,12 @@ class Command
     public function help(): void
     {
         echo "Available commands:\n";
-        echo "help                               Display this help message\n";
-        echo "list                               List all contacts\n";
-        echo "detail [id]                        Show contact details\n";
-        echo "create [name], [email], [phone]    Create a new contact\n";
-        echo "delete [id]                        Delete a contact\n";
-        echo "quit                               Exit the program\n";
+        echo "help                                  Display this help message\n";
+        echo "list                                  List all contacts\n";
+        echo "detail [id]                           Show contact details\n";
+        echo "create [name], [email], [phone]       Create a new contact\n";
+        echo "delete [id]                           Delete a contact\n";
+        echo "modify [id], [name], [email], [phone] Update an existing contact\n";
+        echo "quit                                  Exit the program\n";
     }
 }
