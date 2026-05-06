@@ -101,4 +101,24 @@ class ContactManager
         //Si aucune ligne n'a été supprimée alors l'id n'existe pas
         return $stmt->rowCount() >  0;
     }
+
+    //Met à jour un contact déjà existant dans la base de données 
+    public function modify(Contact $contact): bool 
+    {
+         $sql = "UPDATE contacts
+                SET name = :name, email = :email, phone_number = :phone_number
+                WHERE id = :id";
+
+        $stmt = $this ->pdo->prepare($sql);
+
+        $stmt->execute([
+            "id" => $contact->getId(),
+            "name" =>$contact->getName(),
+            "email" => $contact->getEmail(),
+            "phone_number" => $contact->getPhoneNumber(),     
+        ]);
+
+        //Si une ligne a été modifiée
+        return $stmt->rowCount() >  0;
+    }
 }

@@ -69,13 +69,34 @@ class Command
     //DELETE contact
     public function delete(int $id): void
     { 
-    //Demande à ContactManager de supprimer le contact en base
+        //Demande à ContactManager de supprimer le contact en base
         $deleted = $this->contactManager->delete($id);
 
         if ($deleted) {
             echo"Contact deleted successfully.\n";
         } else {
             echo "Contact not found.\n";
+        }
+    }
+
+    //MODIFY contact
+    public function modify(int $id, string $name, string $email, string $phoneNumber): void 
+    {
+        //Création d’un objet Contact mis à jour
+        $contact = new Contact();
+
+        $contact->setId($id);
+        $contact->setName($name);
+        $contact->setEmail($email);
+        $contact->setPhoneNumber($phoneNumber);
+
+        //Demande à ContactManager de modifier le contact en base
+        $updated = $this->contactManager->modify($contact);
+
+        if ($updated) {
+            echo "Contact updated succcessfully.\n";
+        } else {
+            echo "Contact not Found.\n";
         }
     }
 

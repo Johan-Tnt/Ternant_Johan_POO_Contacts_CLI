@@ -7,7 +7,7 @@ $command = new Command();
 
 //Boucle infinie CLI
 while (true) {
-    $line = readline("Enter your command (list, detail, create, delete, help, quit): ");
+    $line = readline("Enter your command (list, detail, create, delete, modify, help, quit): ");
 
     //LIST contacts
     if ($line === "list") {
@@ -43,7 +43,19 @@ while (true) {
         continue;
     }
 
-   //HELP
+    //MODIFY Contact
+    if (preg_match('/^modify\s+(\d+),\s*(.+),\s*(.+),\s*(.+)$/', $line, $matches)) {
+            
+        $id = (int)$matches[1];
+        $name = $matches[2];
+        $email = $matches[3];
+        $phone = $matches[4];
+
+        $command->modify($id, $name, $email, $phone);
+        continue;
+    }
+
+    //HELP
     if ($line === "help") {
         $command->help();
         continue;
