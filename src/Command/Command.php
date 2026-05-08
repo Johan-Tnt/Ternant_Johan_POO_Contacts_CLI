@@ -73,7 +73,7 @@ class Command
         $deleted = $this->contactManager->delete($id);
 
         if ($deleted) {
-            echo"Contact deleted successfully.\n";
+            echo "Contact deleted successfully.\n";
         } else {
             echo "Contact not found.\n";
         }
@@ -94,7 +94,7 @@ class Command
         $updated = $this->contactManager->modify($contact);
 
         if ($updated) {
-            echo "Contact updated succcessfully.\n";
+            echo "Contact updated successfully.\n";
         } else {
             echo "Contact not Found.\n";
         }

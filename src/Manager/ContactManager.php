@@ -16,6 +16,20 @@ class ContactManager
         $this->pdo = $db->getPDO();
     }
 
+    //Transforme une ligne SQL (array) en objet Contact
+    //@param array $row Données issues de la base de données et @return Contact Objet métier Contact
+    private function hydrate(array $row): Contact
+    {
+        $contact = new Contact();
+
+        $contact->setId($row["id"]);
+        $contact->setName($row["name"]);
+        $contact->setEmail($row["email"]);
+        $contact->setPhoneNumber($row["phone_number"]);
+
+        return $contact;
+    }
+    
     //Récupère tous les contacts de la bdd et les transforme en objets Contact
     public function findAll(): array
     {
@@ -28,14 +42,7 @@ class ContactManager
 
         //Transformation en objets Contact
         foreach ($results as $row) {
-            $contact = new Contact();
-
-            $contact->setId($row['id']);
-            $contact->setName($row['name']);
-            $contact->setEmail($row['email']);
-            $contact->setPhoneNumber($row['phone_number']);
-
-            $contacts[] = $contact;
+        $contacts[] = $this->hydrate($row);
         }
 
         return $contacts;
@@ -45,7 +52,7 @@ class ContactManager
     public function findById(int $id): ?Contact
     {
         //Requête SQL avec paramètre nommé pour éviter les injections SQL
-        $sql = "SELECT * FROM contacts WHERE id= :id";
+        $sql = "SELECT * FROM contacts WHERE id = :id";
         //Prépare la requête (sécurisé + optimisé pour les requêtes avec paramètres)
         $stmt = $this->pdo->prepare($sql);
         //Exécute la requête en injectant la valeur de l'id dans le paramètre :id
@@ -61,14 +68,7 @@ class ContactManager
         }
 
         //Transformation en objets Contact
-        $contact = new Contact();
-
-        $contact->setId($row["id"]);
-        $contact->setName($row["name"]);
-        $contact->setEmail($row["email"]);
-        $contact->setPhoneNumber($row["phone_number"]);
-
-        return $contact; 
+         return $this->hydrate($row);
     }
 
     //Insère un nouveau contact dans la base de données
