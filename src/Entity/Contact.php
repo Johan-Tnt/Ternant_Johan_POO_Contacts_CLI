@@ -1,5 +1,7 @@
 <?php
 
+namespace Johan\ContactCli\Entity;
+
 //class Contact correspond directement à une ligne de la table SQL contact
 class Contact
 {

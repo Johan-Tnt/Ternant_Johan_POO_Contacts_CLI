@@ -1,5 +1,10 @@
 <?php
 
+namespace Johan\ContactCli\Database;
+
+use PDO;
+use PDOException;
+
 //class DBConnection gère la connexion à la base de données via PDO
 class DBConnection
 {

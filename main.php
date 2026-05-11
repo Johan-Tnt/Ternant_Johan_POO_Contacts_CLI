@@ -1,6 +1,8 @@
 <?php
 
-require_once "src/Console/Console.php";
+require __DIR__ . '/vendor/autoload.php';
+
+use Johan\ContactCli\Console\Console;
 
 //Point d'entrée de l'application CLI
 $console = new Console();

@@ -1,7 +1,11 @@
 <?php
 
-require_once "src/Database/DBConnection.php";
-require_once "src/Entity/Contact.php"; 
+
+namespace Johan\ContactCli\Manager;
+
+use PDO;
+use Johan\ContactCli\Database\DBConnection;
+use Johan\ContactCli\Entity\Contact;
 
 //class ContactManager gère l'accès aux données de la table Contact
 //Centralise les requêtes SQL liées aux contacts et retourne des objets Contact
@@ -109,7 +113,7 @@ class ContactManager
                 SET name = :name, email = :email, phone_number = :phone_number
                 WHERE id = :id";
 
-        $stmt = $this ->pdo->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
 
         $stmt->execute([
             "id" => $contact->getId(),

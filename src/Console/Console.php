@@ -1,6 +1,8 @@
 <?php
 
-require_once "src/Command/Command.php";
+namespace Johan\ContactCli\Console;
+
+use Johan\ContactCli\Command\Command;
 
 //class Console gère l'exécution de l'application en ligne de commande.
 //Elle lit les entrées utilisateur, détecte les commandes et délègue l'exécution à la classe Command.

@@ -1,0 +1,16 @@
+{
+    "name": "johan/contact-cli",
+    "description": "CLI contact manager project",
+    "autoload": {
+        "psr-4": {
+            "Johan\\ContactCli\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Johan",
+            "email": "johan@local.dev"
+        }
+    ],
+    "require": {}
+}

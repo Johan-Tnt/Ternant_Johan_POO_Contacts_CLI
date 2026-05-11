@@ -1,6 +1,9 @@
 <?php
 
-require_once "src/Manager/ContactManager.php";
+namespace Johan\ContactCli\Command;
+
+use Johan\ContactCli\Manager\ContactManager;
+use Johan\ContactCli\Entity\Contact;
 
 //class Command centralise l'exécution des commandes disponibles dans l'application CLI 
 //(list, detail, create, delete, etc.)
